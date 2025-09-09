@@ -1,6 +1,7 @@
 import { Navigate } from "react-router";
 
 interface ProtectedRouteProps {
+    isAuth: boolean;
     children: React.ReactNode;
 }
 

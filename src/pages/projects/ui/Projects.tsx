@@ -6,9 +6,10 @@ const Projects = () => {
       </h2>
 
       <div className="space-y-10">
+        {/* Project 1 */}
         <div className="flex flex-col md:flex-row items-center border rounded-lg overflow-hidden shadow-sm">
           <img
-            src=""
+            src="https://picsum.photos/id/1018/600/400"
             alt="Project 1"
             className="w-full md:w-1/2 object-cover"
           />
@@ -24,9 +25,11 @@ const Projects = () => {
             </button>
           </div>
         </div>
+
+        {/* Project 2 */}
         <div className="flex flex-col md:flex-row items-center border rounded-lg overflow-hidden shadow-sm">
           <img
-            src=""
+            src="https://picsum.photos/id/1025/600/400"
             alt="Project 2"
             className="w-full md:w-1/2 object-cover"
           />
@@ -43,9 +46,10 @@ const Projects = () => {
           </div>
         </div>
 
+        {/* Project 3 */}
         <div className="flex flex-col md:flex-row items-center border rounded-lg overflow-hidden shadow-sm">
           <img
-            src=""
+            src="https://picsum.photos/id/1043/600/400"
             alt="Project 3"
             className="w-full md:w-1/2 object-cover"
           />
