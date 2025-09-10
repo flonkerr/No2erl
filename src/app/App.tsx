@@ -1,11 +1,14 @@
 import './styles/App.css'
+import { AppProviders } from './providers'
 import { AppRouter } from './router'
 
 function App() {
 
   return (
     <>
-    <AppRouter />
+      <AppProviders>
+        <AppRouter />
+      </AppProviders>
     </>
   )
 }

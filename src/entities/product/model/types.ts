@@ -1,3 +1,4 @@
+// Типы для отзыва
 interface Review {
   rating: number;
   comment: string;
@@ -6,6 +7,7 @@ interface Review {
   reviewerEmail: string;
 }
 
+// Типы для мета-данных
 interface Meta {
   createdAt: string;
   updatedAt: string;
@@ -94,6 +96,7 @@ interface DeletedProductResponse extends Product {
   deletedOn: string;
 }
 
+// Тип для параметров запроса
 interface ProductsQueryParams {
   limit?: number;
   skip?: number;
@@ -104,6 +107,7 @@ interface ProductsQueryParams {
   category?: string;
 }
 
+// Тип для категорий
 interface CategoriesResponse {
   categories: string[];
 }

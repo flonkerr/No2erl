@@ -2,19 +2,19 @@ import { lazy } from "react";
 import type { RouteObject } from "react-router";
 import MainLayout from "../layout/MainLayout";
 import { ProtectedRoute } from "./ProtectedRoute";
+import ProductPage from "../../pages/Product/ui/ProductPage";
 // import HomePage from '@/pages/HomePage/ui/HomePage';
 
-const HomePage = lazy(() => import("@/pages/HomePage/ui/HomePage"));
-const Gallery = lazy(() => import("@/pages/gallery/ui/Gallery"));
-const Projects = lazy(() => import("@/pages/projects/ui/Projects"));
-const Certifications = lazy(
-  () => import("@/pages/certifications/ui/Certifications")
-);
-const ContactUs = lazy(() => import("@/pages/contactUs/ui/ContactUs"));
-const ProfileMenu = lazy(() => import("@/pages/profile/ui/Profile"));
-const Forum = lazy(() => import("@/pages/Forum/ui/Forum"));
-const Register = lazy(() => import("@/pages/auth/Register/ui/Register"));
-const Login = lazy(() => import("@/pages/auth/Login/ui/Login"));
+const HomePage = lazy(() => import("../../pages/HomePage/ui/HomePage"));
+const Gallery = lazy(() => import("../../pages/gallery/ui/Gallery"));
+const Projects = lazy(() => import("../../pages/projects/ui/Projects"));
+const Certifications = lazy(() => import("../../pages/certifications/ui/Certifications"));
+const ContactUs = lazy(() => import("../../pages/contactUs/ui/ContactUs"));
+const ProfileMenu = lazy(() => import("../../pages/profile/ui/Profile"));
+const Product = lazy(() => import("../../pages/Product/ui/Product"));
+const Register = lazy(() => import("../../pages/auth/register/ui/Register"));
+const Login = lazy(() => import("../../pages/auth/login/ui/Login"));
+
 
 export const routes: RouteObject[] = [
   {
@@ -64,9 +64,16 @@ export const routes: RouteObject[] = [
       },
 
       {
-        path: "/Forum",
-        element: <Forum />,
+        path: "/Product",
+        element: <Product />,
       },
+
+      {
+        path: "/products/:id",
+        element: (
+            <ProductPage />
+        ),
+      }
     ],
   },
 ];

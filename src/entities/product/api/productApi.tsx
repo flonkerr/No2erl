@@ -1,13 +1,11 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import type { Product } from "../model/types";
 import { baseQuery } from "../../../shared/api/baseQuery";
-
-
 
 export const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: baseQuery,
-  tagTypes: ['Product'], // Добавляем тип тега для кеширования
+  tagTypes: ['Product'], 
   endpoints: (builder) => ({
     getProducts: builder.query<Product[], void>({
       query: () => "/products",
@@ -15,12 +13,11 @@ export const productApi = createApi({
         console.log("Raw API response:", response);
         return response;
       },
-      // Добавляем обработку ошибок
       transformErrorResponse: (response) => {
         console.error("API Error:", response);
         return response;
       },
-      providesTags: ['Product'], // Кеширование
+      providesTags: ['Product'], 
     }),
 
     getProductById: builder.query<Product, string>({
@@ -29,12 +26,11 @@ export const productApi = createApi({
         console.log("Raw API response:", response);
         return response;
       },
-      // Добавляем обработку ошибок
       transformErrorResponse: (response) => {
         console.error("API Error:", response);
         return response;
       },
-      providesTags: ['Product'], // Кеширование
+      providesTags: ['Product'], 
     }),
   }),
 });

@@ -17,7 +17,7 @@ function Header() {
           { to: "/Projects", label: "OUR PROJECTS" },
           { to: "/Certifications", label: "CERTIFICATIONS" },
           { to: "/ContactUs", label: "CONTACTS" },
-          { to: "/Forum", label: "FORUM" },
+          { to: "/Product", label: "PRODUCTS" },
         ].map((link) => (
           <Link
             key={link.to}
