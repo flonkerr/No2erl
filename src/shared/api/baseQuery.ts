@@ -1,10 +1,13 @@
-import { API_BASE_URl } from "./base";
+import { fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { API_BASE_URL } from "./base";
 
 export const baseQuery = fetchBaseQuery({
-    baseUrl: API_BASE_URl,
-    prepareHeaders: (headers) => {
-        headers.set("Content-Type", "application/json");
-
-        return headers;
-    }
-})
+  baseUrl: API_BASE_URL,
+  prepareHeaders: (headers) => {
+    headers.set("Content-Type", "application/json");
+    // если есть токен:
+    // const token = localStorage.getItem("token");
+    // if (token) headers.set("Authorization", `Bearer ${token}`);
+    return headers;
+  },
+});
