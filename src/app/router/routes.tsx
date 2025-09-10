@@ -48,7 +48,7 @@ export const routes: RouteObject[] = [
       {
         path: "/profile",
         element: (
-          <ProtectedRoute isAuth={isLoggedIn}>
+          <ProtectedRoute isAuth>
             <ProfileMenu />
           </ProtectedRoute>
         ),
