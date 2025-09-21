@@ -7,8 +7,10 @@ interface AppProvidersProps {
 
 export function AppProviders({ children }: AppProvidersProps) {
   return (
+    <BrowserRouter>
       <StoreProvider>
         {children}
       </StoreProvider>
+    </BrowserRouter>
   );
 }

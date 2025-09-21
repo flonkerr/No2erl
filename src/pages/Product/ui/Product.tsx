@@ -5,7 +5,7 @@ export default function Product() {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold underline">Shop Page</h1>
+            <h1 className="text-3xl font-bold">Shop Page</h1>
             <ProductsList />
            
         </div>

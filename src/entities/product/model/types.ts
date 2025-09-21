@@ -1,4 +1,3 @@
-// Типы для отзыва
 interface Review {
   rating: number;
   comment: string;
@@ -7,7 +6,6 @@ interface Review {
   reviewerEmail: string;
 }
 
-// Типы для мета-данных
 interface Meta {
   createdAt: string;
   updatedAt: string;
@@ -15,14 +13,12 @@ interface Meta {
   qrCode: string;
 }
 
-// Типы для размеров
 interface Dimensions {
   width: number;
   height: number;
   depth: number;
 }
 
-// Основной тип продукта
 export interface Product {
   id: number;
   title: string;
@@ -48,7 +44,64 @@ export interface Product {
   images: string[];
 }
 
-// Тип для ответа со списком продуктов
+export interface Property {
+  id: number;
+  title: string;                       
+  description: string;                
+  type: 
+    | "apartment" 
+    | "house" 
+    | "villa" 
+    | "land" 
+    | "commercial" 
+    | "office" 
+    | "garage" 
+    | "new_building" 
+    | "secondary_housing";             
+
+  price: number;                       
+  currency: "AZN" | "USD" | "EUR";
+
+  location: Location;
+  
+  area: number;                                    
+  landArea?: number;                  
+
+  rooms: number;                    
+  floor?: number;                             
+
+  buildYear?: number;            
+  ceilingHeight?: number;            
+  condition: "new" | "renovated" | "needs_repair";
+  furnishing: "furnished" | "semi-furnished" | "unfurnished";
+
+  ownership: "owner" | "agency";
+  status: "available" | "sold" | "rented";
+
+  amenities?: string[];             
+  documents?: string[];     
+
+  contact: Contact;
+  views: number;                   
+  postedDate: string;              
+
+  thumbnail: string;               
+  images: string[];               
+}
+  
+export interface Location {
+  city: string;                 
+  district?: string;                 
+  settlement?: string;               
+  street?: string;
+}
+
+export interface Contact {
+  name: string;
+  phone: string;
+  email?: string;
+}
+
 interface ProductsResponse {
   products: Product[];
   total: number;
@@ -57,12 +110,10 @@ interface ProductsResponse {
 }
 
 
+///////////////////////////////////
 
-////////////////////////////////////
-// Тип для ответа с одним продуктом
 interface SingleProductResponse extends Product {}
 
-// Тип для создания продукта (все поля опциональны кроме title)
 interface CreateProductRequest {
   title: string;
   description?: string;
@@ -87,16 +138,13 @@ interface CreateProductRequest {
   images?: string[];
 }
 
-// Тип для обновления продукта (все поля опциональны)
 interface UpdateProductRequest extends Partial<CreateProductRequest> {}
 
-// Тип для удаленного продукта
 interface DeletedProductResponse extends Product {
   isDeleted: boolean;
   deletedOn: string;
 }
 
-// Тип для параметров запроса
 interface ProductsQueryParams {
   limit?: number;
   skip?: number;
@@ -107,50 +155,6 @@ interface ProductsQueryParams {
   category?: string;
 }
 
-// Тип для категорий
 interface CategoriesResponse {
   categories: string[];
 }
-
-// Пример использования
-// const exampleProduct: Product = {
-//   id: 1,
-//   title: "Essence Mascara Lash Princess",
-//   description: "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
-//   category: "beauty",
-//   price: 9.99,
-//   discountPercentage: 7.17,
-//   rating: 4.94,
-//   stock: 5,
-//   tags: ["beauty", "mascara"],
-//   brand: "Essence",
-//   sku: "RCH45Q1A",
-//   weight: 2,
-//   dimensions: {
-//     width: 23.17,
-//     height: 14.43,
-//     depth: 28.01
-//   },
-//   warrantyInformation: "1 month warranty",
-//   shippingInformation: "Ships in 1 month",
-//   availabilityStatus: "Low Stock",
-//   reviews: [
-//     {
-//       rating: 2,
-//       comment: "Very unhappy with my purchase!",
-//       date: "2024-05-23T08:56:21.618Z",
-//       reviewerName: "John Doe",
-//       reviewerEmail: "john.doe@x.dummyjson.com"
-//     }
-//   ],
-//   returnPolicy: "30 days return policy",
-//   minimumOrderQuantity: 24,
-//   meta: {
-//     createdAt: "2024-05-23T08:56:21.618Z",
-//     updatedAt: "2024-05-23T08:56:21.618Z",
-//     barcode: "9164035109868",
-//     qrCode: "..."
-//   },
-//   thumbnail: "...",
-//   images: ["...", "...", "..."]
-// };

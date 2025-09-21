@@ -4,6 +4,7 @@ import MainLayout from "../layout/MainLayout";
 import { ProtectedRoute } from "./ProtectedRoute";
 import ProductPage from "../../pages/Product/ui/ProductPage";
 // import HomePage from '@/pages/HomePage/ui/HomePage';
+import CartPage from "../../pages/Cart/ui/CartPage";
 
 const HomePage = lazy(() => import("../../pages/HomePage/ui/HomePage"));
 const Gallery = lazy(() => import("../../pages/gallery/ui/Gallery"));
@@ -14,7 +15,6 @@ const ProfileMenu = lazy(() => import("../../pages/profile/ui/Profile"));
 const Product = lazy(() => import("../../pages/Product/ui/Product"));
 const Register = lazy(() => import("../../pages/auth/register/ui/Register"));
 const Login = lazy(() => import("../../pages/auth/login/ui/Login"));
-
 
 export const routes: RouteObject[] = [
   {
@@ -73,7 +73,17 @@ export const routes: RouteObject[] = [
         element: (
             <ProductPage />
         ),
-      }
+      },
+
+       {
+        path: "/cart",
+        element: (
+          <ProtectedRoute isAuth>
+            <CartPage />
+          </ProtectedRoute>
+
+        ),
+      },
     ],
   },
 ];

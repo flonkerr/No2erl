@@ -8,7 +8,7 @@ export const productApi = createApi({
   tagTypes: ['Product'], 
   endpoints: (builder) => ({
     getProducts: builder.query<Product[], void>({
-      query: () => "/products",
+      query: () => "/properties",
       transformResponse: (response: Product[]) => {
         console.log("Raw API response:", response);
         return response;
@@ -21,7 +21,7 @@ export const productApi = createApi({
     }),
 
     getProductById: builder.query<Product, string>({
-      query: (id: string) => `/products/${id}`,
+      query: (id: string) => `/properties/${id}`,
       transformResponse: (response: Product) => {
         console.log("Raw API response:", response);
         return response;
@@ -35,4 +35,4 @@ export const productApi = createApi({
   }),
 });
 
-export const { useGetProductsQuery, useGetProductByIdQuery } = productApi;
+export const { useGetProductsQuery, useGetProductByIdQuery } = productApi; 
