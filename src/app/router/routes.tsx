@@ -3,18 +3,29 @@ import type { RouteObject } from "react-router";
 import MainLayout from "../layout/MainLayout";
 import { ProtectedRoute } from "./ProtectedRoute";
 import ProductPage from "../../pages/Product/ui/ProductPage";
-// import HomePage from '@/pages/HomePage/ui/HomePage';
 import CartPage from "../../pages/Cart/ui/CartPage";
+import N404 from "../../pages/NotFounderror/N404"
+import Login from "../../pages/auth/login/ui/Login"
+import Register from "../../pages/auth/register/ui/Register"
+import ViewProject from "../../pages/projects/ui/ViewProject"
+import ViewProject2 from "../../pages/projects/ui/ViewProject2"
+import ViewProject3 from "../../pages/projects/ui/ViewProject3"
+
 
 const HomePage = lazy(() => import("../../pages/HomePage/ui/HomePage"));
 const Gallery = lazy(() => import("../../pages/gallery/ui/Gallery"));
 const Projects = lazy(() => import("../../pages/projects/ui/Projects"));
-const Certifications = lazy(() => import("../../pages/certifications/ui/Certifications"));
+const Aboutus = lazy(() => import("../../pages/aboutus/ui/Aboutus"));
 const ContactUs = lazy(() => import("../../pages/contactUs/ui/ContactUs"));
 const ProfileMenu = lazy(() => import("../../pages/profile/ui/Profile"));
 const Product = lazy(() => import("../../pages/Product/ui/Product"));
-const Register = lazy(() => import("../../pages/auth/register/ui/Register"));
-const Login = lazy(() => import("../../pages/auth/login/ui/Login"));
+
+// const wait = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
+// const HomePage = lazy(() =>
+//   wait(500).then(() => import("../../pages/HomePage/ui/HomePage"))
+// );
+
 
 export const routes: RouteObject[] = [
   {
@@ -41,8 +52,8 @@ export const routes: RouteObject[] = [
       },
 
       {
-        path: "/certifications",
-        element: <Certifications />,
+        path: "/aboutus",
+        element: <Aboutus />,
       },
 
       {
@@ -55,15 +66,6 @@ export const routes: RouteObject[] = [
       },
 
       {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-      },
-
-      {
         path: "/Product",
         element: <Product />,
       },
@@ -71,11 +73,11 @@ export const routes: RouteObject[] = [
       {
         path: "/products/:id",
         element: (
-            <ProductPage />
+          <ProductPage />
         ),
       },
 
-       {
+      {
         path: "/cart",
         element: (
           <ProtectedRoute isAuth>
@@ -84,6 +86,37 @@ export const routes: RouteObject[] = [
 
         ),
       },
+
+      {
+        path: "/ViewProject",
+        element: <ViewProject />
+      },
+
+      {
+        path: "/ViewProject2",
+        element: <ViewProject2 />
+      },
+
+      {
+        path: "/ViewProject3",
+        element: <ViewProject3 />
+      },
+
     ],
+  },
+
+  {
+    path: "*",
+    element: (
+      <N404 />
+    ),
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
 ];

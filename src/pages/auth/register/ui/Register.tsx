@@ -1,8 +1,33 @@
-const RegisterPage = (props: any) => {
-  const { setUsername, setEmail, setPassword, handleSubmit } = props;
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react"; 
+
+const RegisterPage = () => {
+  const navigate = useNavigate();
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const user = { username, email, password };
+    localStorage.setItem("user", JSON.stringify(user));
+
+    navigate("/");
+  };
 
   return (
     <div className="flex h-screen">
+      <Link
+        to="/"
+        className="fixed top-4 left-4 flex items-center justify-center
+                 w-10 h-10 bg-white rounded-md
+                 "
+      >
+        <ArrowLeft size={20} strokeWidth={2.5} />
+      </Link>
       <div className="w-1/2 flex flex-col justify-center items-center bg-white px-12">
         <h1 className="text-5xl font-bold text-gray-900 mb-8">REGISTER</h1>
 
@@ -14,6 +39,8 @@ const RegisterPage = (props: any) => {
               className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-800"
               placeholder="Choose a username"
               onChange={(e) => setUsername(e.target.value)}
+              value={username}
+              required
             />
           </div>
 
@@ -24,6 +51,8 @@ const RegisterPage = (props: any) => {
               className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-800"
               placeholder="Enter your email"
               onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              required
             />
           </div>
 
@@ -34,6 +63,8 @@ const RegisterPage = (props: any) => {
               className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-gray-800"
               placeholder="Create a password"
               onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              required
             />
           </div>
 
