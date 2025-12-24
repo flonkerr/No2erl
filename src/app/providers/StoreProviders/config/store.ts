@@ -4,6 +4,8 @@ import { cartApi } from "../../../../entities/cart/api/cartApi";
 import { cartApiFeature } from "../../../../feature/cart/useAddProduct/api/useAddProuct";
 import { authApiFeature } from "../../../../feature/auth/model/authApi";
 import authReducer from "../../../../entities/auth/model/authSlice"; 
+import { filterApi } from "../../../../feature/filter/api/filterApi";
+
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +13,7 @@ export const store = configureStore({
     [cartApi.reducerPath]: cartApi.reducer,
     [cartApiFeature.reducerPath]: cartApiFeature.reducer,
     [authApiFeature.reducerPath]: authApiFeature.reducer, 
+    [filterApi.reducerPath]: filterApi.reducer,
     auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -18,7 +21,8 @@ export const store = configureStore({
       productApi.middleware,
       cartApi.middleware,
       cartApiFeature.middleware,
-      authApiFeature.middleware
+      authApiFeature.middleware,
+      filterApi.middleware,
     ),
 });
 

@@ -10,7 +10,14 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const hashPassword = async (plain: string) => {
+    const enc = new TextEncoder().encode(plain);
+    const buf = await crypto.subtle.digest("SHA-256", enc);
+    const arr = Array.from(new Uint8Array(buf));
+    return arr.map((b) => b.toString(16).padStart(2, "0")).join("");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const storedUser = localStorage.getItem("user");
@@ -21,12 +28,24 @@ const LoginPage = () => {
 
     const user = JSON.parse(storedUser);
 
-    if (email === user.email && password === user.password) {
-      localStorage.setItem("loggedInUser", JSON.stringify(user));
-      navigate("/");
-    } else {
+    const inputHash = await hashPassword(password);
+    const matches =
+      email === user.email &&
+      (user.passwordHash ? user.passwordHash === inputHash : user.password === password);
+
+    if (!matches) {
       setError("Email or password is incorrect.");
+      return;
     }
+
+    const sessionUser = {
+      username: user.username,
+      email: user.email,
+      avatar: user.avatar,
+      about: user.about,
+    };
+    localStorage.setItem("loggedInUser", JSON.stringify(sessionUser));
+    navigate("/");
   };
 
   return (
@@ -34,8 +53,7 @@ const LoginPage = () => {
       <Link
         to="/"
         className="fixed top-4 left-4 flex items-center justify-center
-                 w-10 h-10 bg-white rounded-md
-                 hover:bg-neutral-100 active:scale-95 transition"
+                 w-10 h-10 bg-white"
       >
         <ArrowLeft size={20} strokeWidth={2.5} />
       </Link>
@@ -66,6 +84,8 @@ const LoginPage = () => {
               placeholder="Enter your password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
+              minLength={8}
+              maxLength={20}
               required
             />
           </div>

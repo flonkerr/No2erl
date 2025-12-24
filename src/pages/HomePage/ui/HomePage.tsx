@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 const slides = [
   {
@@ -17,7 +16,7 @@ const slides = [
 ];
 
 const FadeInSection = ({ children }) => {
-  const ref = useRef();
+  const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -32,15 +31,15 @@ const FadeInSection = ({ children }) => {
     );
 
     if (ref.current) observer.observe(ref.current);
-
     return () => observer.disconnect();
   }, []);
 
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out transform ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
+      className={`transition-all duration-700 ease-out transform ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
     >
       {children}
     </div>
@@ -51,11 +50,11 @@ const Homepage = () => {
   const [current, setCurrent] = useState(0);
 
   const prevSlide = () => {
-    setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+    setCurrent((p) => (p === 0 ? slides.length - 1 : p - 1));
   };
 
   const nextSlide = () => {
-    setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    setCurrent((p) => (p === slides.length - 1 ? 0 : p + 1));
   };
 
   return (
@@ -68,7 +67,9 @@ const Homepage = () => {
                 <h2 className="text-gray-400 text-2xl tracking-widest">
                   {slides[current].title}
                 </h2>
-                <h1 className="text-5xl font-bold">{slides[current].subtitle}</h1>
+                <h1 className="text-5xl font-bold">
+                  {slides[current].subtitle}
+                </h1>
               </div>
 
               <div className="flex items-center space-x-5">
@@ -103,9 +104,9 @@ const Homepage = () => {
               />
 
               <a
-                href="#"
+                href="#projects"
                 className="absolute bottom-0 left-0 flex items-center justify-between bg-white/90 backdrop-blur-sm 
-                       px-6 py-3 text-sm tracking-widest font-medium hover:bg-white transition"
+                           px-6 py-3 text-sm tracking-widest font-medium hover:bg-white transition"
               >
                 <span>VIEW PROJECT</span>
                 <span>→</span>
@@ -121,17 +122,17 @@ const Homepage = () => {
             <div className="grid grid-cols-2 grid-rows-2 gap-4 lg:w-1/2">
               <img
                 src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400"
-                alt=""
+                alt="About"
                 className="w-full h-full object-cover"
               />
               <img
                 src="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?w=400"
-                alt=""
-                className="w-full h-full object-cover col-span-1 row-span-2"
+                alt="About"
+                className="w-full h-full object-cover row-span-2"
               />
               <img
                 src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=400"
-                alt=""
+                alt="About"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -140,24 +141,17 @@ const Homepage = () => {
               <h2 className="text-gray-400 text-4xl mb-4">About</h2>
               <p className="text-gray-600 leading-relaxed mb-6">
                 Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy text
-                ever since the 1500s, when an unknown printer took a galley of
-                type and scrambled it to make a type specimen book.
+                industry.
               </p>
-              <Link
-                to="/aboutus"
+
+              <a
+                href="#aboutus"
                 className="group bg-white border px-6 py-3 text-sm tracking-widest font-medium flex items-center gap-2 w-fit
-             transition duration-300 ease-in-out
-             hover:bg-gray-50 hover:shadow-md"
+                           hover:bg-gray-50 hover:shadow-md transition"
               >
                 READ MORE
-                <span
-                  className="inline-block transform transition duration-300 ease-in-out
-               group-hover:translate-x-1"
-                >
-                  →
-                </span>
-              </Link>
+                <span className="group-hover:translate-x-1 transition">→</span>
+              </a>
             </div>
           </div>
         </section>
@@ -165,30 +159,91 @@ const Homepage = () => {
 
       <FadeInSection>
         <section className="bg-white py-16 px-6 md:px-16">
-          <h2 className="text-gray-400 text-4xl mb-12">
-            Main Focus/Mission Statement
-          </h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="flex gap-6">
-              <span className="text-gray-200 text-[100px] font-bold leading-none">
-                1
-              </span>
+          <div className="max-w-[1400px] mx-auto text-center mb-12">
+            <h2 className="text-gray-400 text-4xl mb-6">
+              Privacy and Security
+            </h2>
+            <p className="text-gray-600 leading-relaxed max-w-3xl mx-auto">
+              We prioritize protecting our clients' privacy and data security, adhering to the
+              principle of confidentiality and professional standards in all our projects.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[1400px] mx-auto">
+            <div className="bg-white border border-gray-200 p-8 hover:shadow-lg transition-shadow duration-300 flex flex-col items-start">
+              <div className="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full mb-6">
+                <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3 text-gray-900">
+                Data Privacy Protection
+              </h3>
               <p className="text-gray-600 leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                efficitur, lectus et facilisis placerat.
+                All project files and client information are stored securely with encrypted access. 
+                We maintain strict confidentiality agreements and ensure your data remains private throughout our collaboration.
               </p>
             </div>
-            <div className="flex gap-6">
-              <span className="text-gray-200 text-[100px] font-bold leading-none">
-                2
-              </span>
+
+            <div className="bg-white border border-gray-200 p-8 hover:shadow-lg transition-shadow duration-300 flex flex-col items-start">
+              <div className="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full mb-6">
+                <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3 text-gray-900">
+                Secure Communication
+              </h3>
               <p className="text-gray-600 leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                efficitur, lectus et facilisis placerat, magna mauris porttitor
-                tortor, a auctor est felis ut nisl.
+                Strict access control and encrypted transmission are enforced to prevent unauthorized 
+                access and reduce exposure to security risks during all project communications.
+              </p>
+            </div>
+
+            <div className="bg-white border border-gray-200 p-8 hover:shadow-lg transition-shadow duration-300 flex flex-col items-start">
+              <div className="w-12 h-12 flex items-center justify-center border border-gray-300 rounded-full mb-6">
+                <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-3 text-gray-900">
+                Professional Standards
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                Client data and project details are handled with the highest professional standards, 
+                with strict protocols in place to meet industry regulations and protect intellectual property.
               </p>
             </div>
           </div>
+        </section>
+
+        <section>
+           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-gray-200">
+              <div className="text-center">
+                <div className="text-4xl font-bold text-gray-900 mb-2">150+</div>
+                <div className="text-gray-500 text-sm tracking-widest">
+                  PROJECTS COMPLETED
+                </div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-gray-900 mb-2">98%</div>
+                <div className="text-gray-500 text-sm tracking-widest">
+                  CLIENT SATISFACTION
+                </div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-gray-900 mb-2">15+</div>
+                <div className="text-gray-500 text-sm tracking-widest">
+                  YEARS EXPERIENCE
+                </div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-gray-900 mb-2">50+</div>
+                <div className="text-gray-500 text-sm tracking-widest">
+                  TEAM MEMBERS
+                </div>
+              </div>
+            </div><br /><br />
         </section>
       </FadeInSection>
     </>

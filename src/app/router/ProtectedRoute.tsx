@@ -1,13 +1,14 @@
 import { Navigate } from "react-router";
 
 interface ProtectedRouteProps {
-    isAuth: boolean;
     children: React.ReactNode;
 }
 
 export function ProtectedRoute({ children }: ProtectedRouteProps) {
 
-    const isAuth = true;
+    const user = localStorage.getItem("loggedInUser");
+    const isAuth = !!user;
+
     if (!isAuth) {
         return <Navigate to="/login" replace />
     }

@@ -8,11 +8,29 @@ const RegisterPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const hashPassword = async (plain: string) => {
+    const enc = new TextEncoder().encode(plain);
+    const buf = await crypto.subtle.digest("SHA-256", enc);
+    const arr = Array.from(new Uint8Array(buf));
+    return arr.map((b) => b.toString(16).padStart(2, "0")).join("");
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const user = { username, email, password };
+    if (username.length < 3 || username.length > 20) {
+      setError("Username must be 3–20 characters.");
+      return;
+    }
+    if (password.length < 8 || password.length > 20) {
+      setError("Password must be 8–20 characters.");
+      return;
+    }
+
+    const passwordHash = await hashPassword(password);
+    const user = { username, email, passwordHash, avatar: "", about: "" };
     localStorage.setItem("user", JSON.stringify(user));
 
     navigate("/");
@@ -32,6 +50,7 @@ const RegisterPage = () => {
         <h1 className="text-5xl font-bold text-gray-900 mb-8">REGISTER</h1>
 
         <form className="w-full max-w-sm" onSubmit={handleSubmit}>
+          {error ? <p className="text-red-600 mb-4">{error}</p> : null}
           <div className="mb-6">
             <label className="block text-gray-600 text-sm mb-2">Username</label>
             <input
@@ -40,6 +59,8 @@ const RegisterPage = () => {
               placeholder="Choose a username"
               onChange={(e) => setUsername(e.target.value)}
               value={username}
+              minLength={3}
+              maxLength={20}
               required
             />
           </div>
@@ -64,6 +85,8 @@ const RegisterPage = () => {
               placeholder="Create a password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
+              minLength={8}
+              maxLength={20}
               required
             />
           </div>

@@ -21,9 +21,12 @@ const ContactUs = () => {
             <p className="text-gray-500">sampleemail@gmail.com</p>
           </div>
 
-          <button className="mt-8 bg-black text-white px-6 py-3 tracking-widest text-sm hover:bg-gray-800 transition">
+          {/* <a
+            href="/contact"
+            className="inline-block mt-8 bg-black text-white px-6 py-3 tracking-widest text-sm hover:bg-gray-800 transition"
+          >
             CONTACT US
-          </button>
+          </a> */}
         </div>
 
         <div>

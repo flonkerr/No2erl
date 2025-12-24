@@ -10,9 +10,8 @@ export default function Error404Animated() {
 
   return (
     <div
-      className={`relative bg-white min-h-screen flex flex-col overflow-hidden transition-opacity duration-1000 ${
-        isVisible ? "opacity-100" : "opacity-0"
-      }`}
+      className={`relative bg-white min-h-screen flex flex-col overflow-hidden transition-opacity duration-1000 ${isVisible ? "opacity-100" : "opacity-0"
+        }`}
     >
       <div className="absolute top-0 left-0 w-32 h-32 bg-gray-300 opacity-40 rotate-12 rounded-sm animate-[float_8s_ease-in-out_infinite]"></div>
 
@@ -43,27 +42,27 @@ export default function Error404Animated() {
         `}
       </style>
 
-   <main className="flex flex-col items-center justify-center flex-grow text-center px-6 md:px-16 py-24 relative z-10">
-  <h1 className="text-gray-200 text-[150px] font-bold leading-none mb-8">
-    404
-  </h1>
+      <main className="flex flex-col items-center justify-center flex-grow text-center px-6 md:px-16 py-24 relative z-10">
+        <h1 className="text-gray-200 text-[150px] font-bold leading-none mb-8">
+          404
+        </h1>
 
-  <h2 className="text-gray-400 text-4xl mb-4 tracking-widest">
-    PAGE NOT FOUND
-  </h2>
+        <h2 className="text-gray-400 text-4xl mb-4 tracking-widest">
+          PAGE NOT FOUND
+        </h2>
 
-  <p className="text-gray-600 max-w-xl leading-relaxed mb-8">
-    Oops! The page you are looking for does not exist. It might have been moved or deleted.
-  </p>
+        <p className="text-gray-600 max-w-xl leading-relaxed mb-8">
+          Oops! The page you are looking for does not exist. It might have been moved or deleted.
+        </p>
 
-  <Link
-    to="/"
-    className="group bg-white border px-6 py-3 text-sm tracking-widest font-medium flex items-center gap-2
+        <Link
+          to="/"
+          className="group bg-white border px-6 py-3 text-sm tracking-widest font-medium flex items-center gap-2
                transition duration-300 ease-in-out hover:bg-gray-50 hover:shadow-lg hover:scale-105"
-  >
-    GO BACK HOME
-  </Link>
-</main>
+        >
+          GO BACK HOME
+        </Link>
+      </main>
 
     </div>
   );

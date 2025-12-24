@@ -42,6 +42,7 @@ export interface Product {
   meta: Meta;
   thumbnail: string;
   images: string[];
+  contact?: Contact;
 }
 
 export interface Property {
@@ -99,62 +100,5 @@ export interface Location {
 export interface Contact {
   name: string;
   phone: string;
-  email?: string;
-}
-
-interface ProductsResponse {
-  products: Product[];
-  total: number;
-  skip: number;
-  limit: number;
-}
-
-
-///////////////////////////////////
-
-interface SingleProductResponse extends Product {}
-
-interface CreateProductRequest {
-  title: string;
-  description?: string;
-  category?: string;
-  price?: number;
-  discountPercentage?: number;
-  rating?: number;
-  stock?: number;
-  tags?: string[];
-  brand?: string;
-  sku?: string;
-  weight?: number;
-  dimensions?: Partial<Dimensions>;
-  warrantyInformation?: string;
-  shippingInformation?: string;
-  availabilityStatus?: string;
-  reviews?: Partial<Review>[];
-  returnPolicy?: string;
-  minimumOrderQuantity?: number;
-  meta?: Partial<Meta>;
-  thumbnail?: string;
-  images?: string[];
-}
-
-interface UpdateProductRequest extends Partial<CreateProductRequest> {}
-
-interface DeletedProductResponse extends Product {
-  isDeleted: boolean;
-  deletedOn: string;
-}
-
-interface ProductsQueryParams {
-  limit?: number;
-  skip?: number;
-  select?: string;
-  sortBy?: keyof Product;
-  order?: 'asc' | 'desc';
-  q?: string;
-  category?: string;
-}
-
-interface CategoriesResponse {
-  categories: string[];
+  email?: string;
 }

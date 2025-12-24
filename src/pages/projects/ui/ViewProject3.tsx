@@ -1,4 +1,11 @@
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+
+
+
 export default function ProjectLayout() {
+
     return (
         <div className="min-h-screen bg-white">
             <div className="max-w-6xl mx-auto py-16">
@@ -57,6 +64,30 @@ export default function ProjectLayout() {
 
                 </div>
             </div>
+
+            <div className="py-4 flex  justify-between px-6 ">
+
+                <Link
+                    to="/viewProject2"
+                    className="flex items-center justify-center w-10 h-10 "
+                >
+                    <ArrowLeft size={22} strokeWidth={2.5} />
+                </Link>
+
+                <div className="w-full flex justify-center mt-4">
+                    <Link
+                        to="/projects"
+                        className=" text-black px-6 py-2  font-medium tracking-wider"
+                    >
+                        Go Back
+                    </Link>
+                </div>
+
+
+            </div>
+
         </div>
+
+
     );
 }

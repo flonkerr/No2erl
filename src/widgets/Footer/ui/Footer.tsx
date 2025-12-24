@@ -59,7 +59,7 @@ const Footer = () => {
             <li><a href="./pages/ui/Gallery" className="hover:underline">Twitter</a></li>
             <li><a href="./pages/ui/Gallery" className="hover:underline">Linkeldn</a></li>
             <li><a href="https://github.com/flonkerr" className="hover:underline">Github</a></li><br />
-            <li><a href="./pages/ui/Gallery" className="hover:underline">FAQ</a></li>
+            <li><Link to="/faq" className="hover:underline">FAQ</Link></li>
           </ul>
         </div>
 
